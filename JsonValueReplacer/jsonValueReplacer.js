@@ -58,7 +58,7 @@ const replaceProperty = (obj, pair) => {
 };
 
 data.pairs.forEach((pair) => {
-  adupa(result, pair);
+  replaceProperty(result, pair);
 });
 
 console.log('Original : ', originalObject);
