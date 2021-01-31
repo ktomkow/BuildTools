@@ -5,7 +5,7 @@ const loadObject = (path) => {
 };
 
 const saveObject = (path, object) => {
-  let data = JSON.stringify(object);
+  let data = JSON.stringify(object, null, 4);
   fs.writeFileSync(path, data);
 };
 
