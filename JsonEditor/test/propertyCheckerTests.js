@@ -28,4 +28,13 @@ describe('Check if property exists', () => {
 
     result.should.be.true();
   });
+
+  it('Property exists but contain undefined', function () {
+    const obj = { name: 'John', first_name: undefined };
+    const property = 'first_name';
+
+    const result = checker.doesExist(obj, property);
+
+    result.should.be.true();
+  });
 });
