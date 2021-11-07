@@ -62,4 +62,20 @@ describe('Check if property exists', () => {
 
     result.should.be.true();
   });
+
+  it('Nested property does not exist', function () {
+    const obj = {
+      name: 'John Doe',
+      contact: {
+        phone: '123 123 123',
+        email: 'johndoe@email.com',
+      },
+    };
+
+    const property = 'contact.address';
+
+    const result = checker.doesExist(obj, property);
+
+    result.should.be.false();
+  });
 });
