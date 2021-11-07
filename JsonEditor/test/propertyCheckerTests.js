@@ -37,4 +37,13 @@ describe('Check if property exists', () => {
 
     result.should.be.true();
   });
+
+  it('Property does not exists because is case sensitive', function () {
+    const obj = { name: 'John' };
+    const property = 'NAME';
+
+    const result = checker.doesExist(obj, property);
+
+    result.should.be.false();
+  });
 });
