@@ -19,4 +19,13 @@ describe('Check if property exists', () => {
     
     result.should.be.false();
   });
+
+  it('Property exists but contain null', function () {
+    const obj = { name: 'John', second_name: null };
+    const property="second_name";
+
+    const result = checker.doesExist(obj, property);
+    
+    result.should.be.true();
+  });
 });
