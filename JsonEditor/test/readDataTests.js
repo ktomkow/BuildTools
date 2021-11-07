@@ -35,6 +35,14 @@ describe('Read and deserialize object', () => {
     instance.car.should.have.property('year', 2012);
     instance.car.should.have.property('engine', '1.0');
   });
+
+  it('Json with nested object', function () {
+    const path = './test/test_data/json_with_polish_chars.json';
+    const content = fileReader.read(path);
+    const instance = serializer.deserialize(content);
+
+    instance.should.have.property('announcement', 'ęśąćź');
+  });
 });
 
 describe('Read and deserialize strange json', () => {
