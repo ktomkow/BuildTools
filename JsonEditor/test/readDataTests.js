@@ -9,8 +9,8 @@ describe('Read and deserialize object', () => {
     const instance = serializer.deserialize(content);
 
     instance.should.have.property('text', 'yup this is string');
-    instance.should.have.property('number');
-    instance.should.have.property('is_this_true');
+    instance.should.have.property('number', 5);
+    instance.should.have.property('is_this_true', true);
   });
 
   it('Json with array', function () {

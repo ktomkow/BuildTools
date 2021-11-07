@@ -8,6 +8,8 @@ describe('Serialize and save object', () => {
     const content = io.read(path);
     const instance = serializer.deserialize(content);
 
+    instance.text = 'this is new string';
+
     const savePath = './tmp/simplest.json';
     const json = serializer.serialize(instance, savePath);
     io.save(json, savePath);
@@ -15,8 +17,8 @@ describe('Serialize and save object', () => {
     const savedContent = io.read(savePath);
     const savedInstance = serializer.deserialize(savedContent);
 
-    savedInstance.should.have.property('text', 'yup this is string');
-    savedInstance.should.have.property('number');
-    savedInstance.should.have.property('is_this_true');
+    savedInstance.should.have.property('text', 'this is new string');
+    savedInstance.should.have.property('number', 5);
+    savedInstance.should.have.property('is_this_true', true);
   });
 });
