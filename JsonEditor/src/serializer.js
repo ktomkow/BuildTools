@@ -1,4 +1,6 @@
-const serialize = (object) => {};
+const serialize = (object) => {
+  return JSON.stringify(object, null, 4);
+};
 
 const deserialize = (json) => {
   const lines = splitToLines(json);
