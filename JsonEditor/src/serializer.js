@@ -18,7 +18,7 @@ const joinLines = (lines) => {
 
 const removeComments = (lines) => {
   return lines.map((x) => {
-    return x.split(" // ")[0];
+    return x.split(" // ")[0].split(" //")[0];
   })
 };
 

@@ -1,6 +1,7 @@
 {
   "configuration" : {
-    "timeout": "60" // in seconds
+    "timeout": "60", // in seconds
+    "retryAfter": "5" //in minutes
   },
   "connectionStrings": {
     "mongo": "mongodb://localhost:27017",
