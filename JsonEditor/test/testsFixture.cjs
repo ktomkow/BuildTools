@@ -35,8 +35,8 @@ exports.mochaGlobalSetup = function () {
   console.log('Setup done.');
 };
 
-// exports.mochaGlobalTeardown = function () {
-//   console.log('I am mocha teardown.');
-//   removeTmpDirectory();
-//   console.log('Teardown done.');
-// };
+exports.mochaGlobalTeardown = function () {
+  console.log('I am mocha teardown.');
+  removeTmpDirectory();
+  console.log('Teardown done.');
+};
