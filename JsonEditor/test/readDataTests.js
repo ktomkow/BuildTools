@@ -36,7 +36,7 @@ describe('Read and deserialize object', () => {
     instance.car.should.have.property('engine', '1.0');
   });
 
-  it('Json with nested object', function () {
+  it('Polish cars in property', function () {
     const path = './test/test_data/json_with_polish_chars.json';
     const content = fileReader.read(path);
     const instance = serializer.deserialize(content);
