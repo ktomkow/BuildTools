@@ -78,4 +78,71 @@ describe('Check if property exists', () => {
 
     result.should.be.false();
   });
+
+  it('Double nested property does not exist', function () {
+    const obj = {
+      name: 'John Doe',
+      contact: {
+        phone: '123 123 123',
+        email: 'johndoe@email.com',
+      },
+    };
+
+    const property = 'contact.address.street';
+
+    const result = checker.doesExist(obj, property);
+
+    result.should.be.false();
+  });
+
+  it('Middle property null roperty does not exist', function () {
+    const obj = {
+      name: 'John Doe',
+      contact: {
+        phone: '123 123 123',
+        email: 'johndoe@email.com',
+        address: null
+      },
+    };
+
+    const property = 'contact.address.street';
+
+    const result = checker.doesExist(obj, property);
+
+    result.should.be.false();
+  });
+
+  it('Middle property undefined roperty does not exist', function () {
+    const obj = {
+      name: 'John Doe',
+      contact: {
+        phone: '123 123 123',
+        email: 'johndoe@email.com',
+        address: undefined
+      },
+    };
+
+    const property = 'contact.address.street';
+
+    const result = checker.doesExist(obj, property);
+
+    result.should.be.false();
+  });
+
+  it('Middle property number not object roperty does not exist', function () {
+    const obj = {
+      name: 'John Doe',
+      contact: {
+        phone: '123 123 123',
+        email: 'johndoe@email.com',
+        address: 2
+      },
+    };
+
+    const property = 'contact.address.street';
+
+    const result = checker.doesExist(obj, property);
+
+    result.should.be.false();
+  });
 });
