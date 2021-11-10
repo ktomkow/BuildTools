@@ -1,3 +1,3 @@
-const argv = process.argv;
+var help = require('./src/help');
 
-console.log(argv);
+help.print();
