@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc --reporter=text mocha --require ./test/testsFixture.cjs",
-    "test:tc": "nyc --reporter=text mocha --require ./test/testsFixture.cjs --reporter mocha-teamcity-reporter",
+    "test:tc": "nyc --reporter=teamcity mocha --require ./test/testsFixture.cjs --reporter mocha-teamcity-reporter",
     "run": "node index.js"
   },
   "author": "",
