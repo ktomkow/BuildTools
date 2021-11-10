@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require ./test/testsFixture.cjs",
+    "test": "mocha --require ./test/testsFixture.cjs --reporter mocha-teamcity-reporter",
     "run": "node index.js"
   },
   "author": "",
