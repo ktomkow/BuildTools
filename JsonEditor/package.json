@@ -6,7 +6,6 @@
   "scripts": {
     "test": "nyc --reporter=text mocha --require ./test/testsFixture.cjs",
     "test:tc": "nyc --reporter=teamcity mocha --require ./test/testsFixture.cjs --reporter mocha-teamcity-reporter",
-    "coverage:teamcity": "nyc --reporter=teamcity mocha --require ./test/testsFixture.cjs",
     "run": "node index.js"
   },
   "author": "",
