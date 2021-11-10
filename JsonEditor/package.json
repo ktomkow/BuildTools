@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require ./test/testsFixture.cjs",
-    "test:tc": "mocha --require ./test/testsFixture.cjs --reporter mocha-teamcity-reporter",
+    "test": "nyc --reporter=text mocha --require ./test/testsFixture.cjs",
+    "test:tc": "nyc --reporter=text mocha --require ./test/testsFixture.cjs --reporter mocha-teamcity-reporter",
     "run": "node index.js"
   },
   "author": "",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "mocha-teamcity-reporter": "^4.1.0",
+    "nyc": "^15.1.0",
     "should": "^13.2.3"
   }
 }

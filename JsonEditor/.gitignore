@@ -443,3 +443,6 @@ $RECYCLE.BIN/
 
 tmp
 temp
+
+coverage
+.nyc_output
