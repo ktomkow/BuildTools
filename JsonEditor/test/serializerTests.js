@@ -24,3 +24,48 @@ describe('Deserialize object from string', () => {
     instance.numbers.second.should.be.instanceof(Number).and.be.exactly(2);
   });
 });
+
+
+describe('Is JSON', () => {
+  it('Single line json is valid json', function () {
+    const json = '{"text":"aaa"}';
+    const result = serializer.isJson(json);
+
+    result.should.be.true();
+  });
+
+  it('Single line json with comment and line break is valid json', function () {
+    const json = '{"text":"aaa" // comment\r\n}';
+    const result = serializer.isJson(json);
+
+    result.should.be.true();
+  });
+
+  it('Just text is not a json', function () {
+    const text = 'abcdefg';
+    const result = serializer.isJson(text);
+
+    result.should.be.false();
+  });
+
+  it('Not closed json is not a json', function () {
+    const text = '{"text":"aaa"';
+    const result = serializer.isJson(text);
+
+    result.should.be.false();
+  });
+
+  it('Not opened json is not a json', function () {
+    const text = '"text":"aaa"}';
+    const result = serializer.isJson(text);
+
+    result.should.be.false();
+  });
+
+  it('Missing qoute is not a json', function () {
+    const text = '{text":"aaa"}';
+    const result = serializer.isJson(text);
+
+    result.should.be.false();
+  });
+});
