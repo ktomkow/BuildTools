@@ -25,7 +25,7 @@ describe('Deserialize object from string', () => {
   });
 
   it('Numbers', function () {
-    const json = '{"int" : 5, "float": 2.3, "text: "99"}';
+    const json = '{"int" : 5, "float": 2.3, "text": "99"}';
     const instance = serializer.deserialize(json);
 
     instance.int.should.be.instanceof(Number).and.be.exactly(5);
