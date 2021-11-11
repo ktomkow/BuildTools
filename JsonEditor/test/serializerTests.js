@@ -30,7 +30,7 @@ describe('Deserialize object from string', () => {
 
     instance.int.should.be.instanceof(Number).and.be.exactly(5);
     instance.float.should.be.instanceof(Number).and.be.exactly(2.3);
-    instance.float.should.be.instanceof(String).and.be.exactly("99");
+    instance.text.should.be.instanceof(String).and.be.exactly("99");
   });
 });
 
