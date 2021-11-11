@@ -11,6 +11,34 @@ describe('Replace values (immutable)', () => {
     obj.text.should.be.exactly('replace me');
     newObj.text.should.be.exactly('How you doing?');
   });
+
+  describe('Replace nested text', () => {
+    it('Value in new object is replaced', function () {
+      const obj = {
+        name: {
+          firstName: 'fName',
+        },
+      };
+      const keyValuePair = { key: 'name.firstName', value: 'John' };
+
+      const newObj = replacer.replace(obj, [keyValuePair]);
+
+      newObj.name.firstName.should.be.exactly('John');
+    });
+
+    it('Value in source object is not changed', function () {
+      const obj = {
+        name: {
+          firstName: 'fName',
+        },
+      };
+      const keyValuePair = { key: 'name.firstName', value: 'John' };
+
+      const newObj = replacer.replace(obj, [keyValuePair]);
+
+      obj.name.firstName.should.be.exactly('fName');
+    });
+  });
 });
 
 describe('Replace values exceptions', () => {

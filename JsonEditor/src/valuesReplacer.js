@@ -1,3 +1,5 @@
+var propertyChecker = require('./propertyChecker');
+
 // Replace only existing properties, do not add new
 // Immutable - does not modify source object, returns new object
 const replace = (object, keyValuePairs) => {
@@ -8,8 +10,26 @@ const replace = (object, keyValuePairs) => {
   }
 
   const result = Object.assign({}, object);
-  result.text = 'How you doing?';
+
+  for (let i = 0; i < keyValuePairs.length; i++) {
+    const pair = keyValuePairs[i];
+    replaceMutable(result, pair.key, pair.value);
+  }
+
   return result;
+};
+
+// Mutates the object
+const replaceMutable = (object, key, value) => {
+  if (propertyChecker.doesExist(object, key)) {
+    if (key.includes('.')) {
+      const mainKey = key.split(".")[0];
+      const otherKeys = key.split(".").slice(1).join(".");
+      replaceMutable(object[mainKey], otherKeys, value);
+    } else {
+      object[key] = value;
+    }
+  }
 };
 
 module.exports = { replace };
