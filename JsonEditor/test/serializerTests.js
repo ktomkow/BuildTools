@@ -23,8 +23,16 @@ describe('Deserialize object from string', () => {
     instance.numbers.first.should.be.instanceof(Number).and.be.exactly(1);
     instance.numbers.second.should.be.instanceof(Number).and.be.exactly(2);
   });
-});
 
+  it('Numbers', function () {
+    const json = '{"int" : 5, "float": 2.3, "text: "99"}';
+    const instance = serializer.deserialize(json);
+
+    instance.int.should.be.instanceof(Number).and.be.exactly(5);
+    instance.float.should.be.instanceof(Number).and.be.exactly(2.3);
+    instance.float.should.be.instanceof(String).and.be.exactly("99");
+  });
+});
 
 describe('Is JSON', () => {
   it('Single line json is valid json', function () {
