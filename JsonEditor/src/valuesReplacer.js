@@ -1,3 +1,4 @@
+const clone = require('rfdc')();
 var propertyChecker = require('./propertyChecker');
 
 // Replace only existing properties, do not add new
@@ -9,7 +10,7 @@ const replace = (object, keyValuePairs) => {
     );
   }
 
-  const result = Object.assign({}, object);
+  const result = clone(object);
 
   for (let i = 0; i < keyValuePairs.length; i++) {
     const pair = keyValuePairs[i];
@@ -23,8 +24,8 @@ const replace = (object, keyValuePairs) => {
 const replaceMutable = (object, key, value) => {
   if (propertyChecker.doesExist(object, key)) {
     if (key.includes('.')) {
-      const mainKey = key.split(".")[0];
-      const otherKeys = key.split(".").slice(1).join(".");
+      const mainKey = key.split('.')[0];
+      const otherKeys = key.split('.').slice(1).join('.');
       replaceMutable(object[mainKey], otherKeys, value);
     } else {
       object[key] = value;
