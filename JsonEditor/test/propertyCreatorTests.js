@@ -2,7 +2,7 @@ var should = require('should');
 var creator = require('../src/propertyCreator');
 var propertyChecker = require('../src/propertyChecker');
 
-describe('Create property', () => {
+describe('PropertyCreatorTests', () => {
   describe('Property not exists', () => {
     describe('Simplest, not nested property', () => {
       it('Returns not null and not undefined', function () {

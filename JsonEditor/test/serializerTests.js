@@ -1,79 +1,81 @@
 var should = require('should');
 var serializer = require('../src/serializer');
 
-describe('Deserialize object from string', () => {
-  it('One text property json', function () {
-    const json = '{"someText" : "Yes this is text"}';
-    const instance = serializer.deserialize(json);
+describe('Serializer', () => {
+  describe('Deserialize object from string', () => {
+    it('One text property json', function () {
+      const json = '{"someText" : "Yes this is text"}';
+      const instance = serializer.deserialize(json);
 
-    instance.should.have.property('someText', 'Yes this is text');
+      instance.should.have.property('someText', 'Yes this is text');
+    });
+
+    it('One number array property json', function () {
+      const json = '{"arr" : [1,2,3]}';
+      const instance = serializer.deserialize(json);
+
+      instance.arr.should.be.instanceof(Array).and.have.lengthOf(3);
+    });
+
+    it('One nested number property', function () {
+      const json = '{"numbers" : { "first": 1, "second": 2}}';
+      const instance = serializer.deserialize(json);
+
+      instance.numbers.first.should.be.instanceof(Number).and.be.exactly(1);
+      instance.numbers.second.should.be.instanceof(Number).and.be.exactly(2);
+    });
+
+    it('Numbers', function () {
+      const json = '{"int" : 5, "float": 2.3, "text": "99"}';
+      const instance = serializer.deserialize(json);
+
+      instance.int.should.be.instanceof(Number).and.be.exactly(5);
+      instance.float.should.be.instanceof(Number).and.be.exactly(2.3);
+      instance.text.should.be.instanceof(String).and.be.exactly('99');
+    });
   });
 
-  it('One number array property json', function () {
-    const json = '{"arr" : [1,2,3]}';
-    const instance = serializer.deserialize(json);
+  describe('Is JSON', () => {
+    it('Single line json is valid json', function () {
+      const json = '{"text":"aaa"}';
+      const result = serializer.isJson(json);
 
-    instance.arr.should.be.instanceof(Array).and.have.lengthOf(3);
-  });
+      result.should.be.true();
+    });
 
-  it('One nested number property', function () {
-    const json = '{"numbers" : { "first": 1, "second": 2}}';
-    const instance = serializer.deserialize(json);
+    it('Single line json with comment and line break is valid json', function () {
+      const json = '{"text":"aaa" // comment\r\n}';
+      const result = serializer.isJson(json);
 
-    instance.numbers.first.should.be.instanceof(Number).and.be.exactly(1);
-    instance.numbers.second.should.be.instanceof(Number).and.be.exactly(2);
-  });
+      result.should.be.true();
+    });
 
-  it('Numbers', function () {
-    const json = '{"int" : 5, "float": 2.3, "text": "99"}';
-    const instance = serializer.deserialize(json);
+    it('Just text is not a json', function () {
+      const text = 'abcdefg';
+      const result = serializer.isJson(text);
 
-    instance.int.should.be.instanceof(Number).and.be.exactly(5);
-    instance.float.should.be.instanceof(Number).and.be.exactly(2.3);
-    instance.text.should.be.instanceof(String).and.be.exactly("99");
-  });
-});
+      result.should.be.false();
+    });
 
-describe('Is JSON', () => {
-  it('Single line json is valid json', function () {
-    const json = '{"text":"aaa"}';
-    const result = serializer.isJson(json);
+    it('Not closed json is not a json', function () {
+      const text = '{"text":"aaa"';
+      const result = serializer.isJson(text);
 
-    result.should.be.true();
-  });
+      result.should.be.false();
+    });
 
-  it('Single line json with comment and line break is valid json', function () {
-    const json = '{"text":"aaa" // comment\r\n}';
-    const result = serializer.isJson(json);
+    it('Not opened json is not a json', function () {
+      const text = '"text":"aaa"}';
+      const result = serializer.isJson(text);
 
-    result.should.be.true();
-  });
+      result.should.be.false();
+    });
 
-  it('Just text is not a json', function () {
-    const text = 'abcdefg';
-    const result = serializer.isJson(text);
+    it('Missing qoute is not a json', function () {
+      const text = '{text":"aaa"}';
+      const result = serializer.isJson(text);
 
-    result.should.be.false();
-  });
-
-  it('Not closed json is not a json', function () {
-    const text = '{"text":"aaa"';
-    const result = serializer.isJson(text);
-
-    result.should.be.false();
-  });
-
-  it('Not opened json is not a json', function () {
-    const text = '"text":"aaa"}';
-    const result = serializer.isJson(text);
-
-    result.should.be.false();
-  });
-
-  it('Missing qoute is not a json', function () {
-    const text = '{text":"aaa"}';
-    const result = serializer.isJson(text);
-
-    result.should.be.false();
+      result.should.be.false();
+    });
   });
 });
