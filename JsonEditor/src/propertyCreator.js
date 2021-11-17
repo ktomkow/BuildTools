@@ -3,10 +3,14 @@ var propertyChecker = require('./propertyChecker');
 
 // Immutable
 create = (object, key) => {
-  const result = clone(object);
-  if (propertyChecker.doesExist(object, key)) {
-    return result;
+  
+  const result = !!object ? clone(object) : {};
+
+  if (propertyChecker.doesExist(object, key) === false) {
+    result[key] = null;
   }
+
+  return result;
 };
 
 module.exports = { create };

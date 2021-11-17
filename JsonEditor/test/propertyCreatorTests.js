@@ -1,17 +1,26 @@
 var should = require('should');
 var creator = require('../src/propertyCreator');
+var propertyChecker = require('../src/propertyChecker');
 
 describe('Create property', () => {
-  describe('Create', () => {
-    it('Simplest', function () {
+  describe('Property not exists', () => {
+    it('Returns not null and not undefined', function () {
+      const obj = {};
+      const property = 'anyway';
+
+      const newObj = creator.create(obj, property);
+
+      const objNotNull = !!newObj;
+      objNotNull.should.be.true();
+    });
+    it('Returns object and create property', function () {
       const obj = {};
       const property = 'meme';
 
       const newObj = creator.create(obj, property);
 
-      const memeNotNull = !!newObj.meme;
-
-      memeNotNull.should.be.true();
+      const memeExists = propertyChecker.doesExist(newObj, property);
+      memeExists.should.be.true();
     });
   });
   describe('Property already exist', () => {
@@ -22,8 +31,9 @@ describe('Create property', () => {
       const newObj = creator.create(obj, property);
 
       const propertyNotNull = !!newObj.prop;
+      const propertyExists = propertyChecker.doesExist(newObj, property);
 
-      propertyNotNull.should.be.true();
+      propertyExists.should.be.true();
     });
 
     it('Top level property - immutable', function () {
