@@ -2,7 +2,7 @@ var should = require('should');
 var replacer = require('../src/valuesReplacer');
 
 describe('Replace values (immutable)', () => {
-  it('Repalce single text', function () {
+  it('Single text', function () {
     const obj = { text: 'replace me' };
     const keyValuePair = { key: 'text', value: 'How you doing?' };
 
@@ -12,7 +12,7 @@ describe('Replace values (immutable)', () => {
     newObj.text.should.be.exactly('How you doing?');
   });
 
-  describe('Replace nested text', () => {
+  describe('Nested text', () => {
     it('Value in new object is replaced', function () {
       const obj = {
         name: {
