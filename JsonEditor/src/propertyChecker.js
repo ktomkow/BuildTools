@@ -1,17 +1,18 @@
-const doesExist = (object, property) => {
+const destructor = require('keyDestructor');
+
+const doesExist = (object, key) => {
   if (!object) {
     return false;
   }
 
-  const propertyParts = property.split('.');
+  const path = destructor.destructor(key);
+
   const objectProperties = Object.keys(object);
 
-  if (propertyParts.length > 1) {
-    const currentKey = propertyParts[0];
-    const directProperty = objectProperties.find((x) => x === currentKey);
-    return doesExist(object[directProperty], propertyParts.slice(1).join('.'));
+  if (path.isTheLastOne === false) {
+    return doesExist(object[path.currentKey], path.shortenPath);
   } else {
-    return objectProperties.some((x) => x === property);
+    return objectProperties.some((x) => x === key);
   }
 };
 
