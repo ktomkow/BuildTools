@@ -4,7 +4,7 @@ var propertyChecker = require('../src/propertyChecker');
 
 describe('Create property', () => {
   describe('Property not exists', () => {
-    describe('Simples, not nested property', () => {
+    describe('Simplest, not nested property', () => {
       it('Returns not null and not undefined', function () {
         const obj = {};
         const property = 'anyway';
