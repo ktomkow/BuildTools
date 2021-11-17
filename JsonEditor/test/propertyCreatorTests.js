@@ -59,4 +59,25 @@ describe('Create property', () => {
       newObj.prop.should.be.exactly('dupa');
     });
   });
+
+  describe('Object is not an object', () => {
+    it('Pass null, get object with property', function () {
+      const obj = null;
+      const property = 'prop';
+
+      const newObj = creator.create(obj, property);
+
+      const propertyExists = propertyChecker.doesExist(newObj, property);
+      propertyExists.should.be.true();
+    });
+    it('Pass undefined, get object with property', function () {
+      const obj = undefined;
+      const property = 'prop';
+
+      const newObj = creator.create(obj, property);
+
+      const propertyExists = propertyChecker.doesExist(newObj, property);
+      propertyExists.should.be.true();
+    });
+  })
 });
