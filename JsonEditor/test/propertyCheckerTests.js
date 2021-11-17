@@ -1,7 +1,7 @@
 var should = require('should');
 var checker = require('../src/propertyChecker');
 
-describe('PropertyCheckerTests', () => {
+describe('PropertyChecker', () => {
   it('Property exists', function () {
     const obj = { name: 'John' };
     const property = 'name';

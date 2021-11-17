@@ -1,7 +1,7 @@
 var should = require('should');
 var fileReader = require('../src/fileIO');
 var serializer = require('../src/serializer');
-describe('FileIO ReadDataTests', () => {
+describe('FileIO ReadData', () => {
   describe('Read and deserialize object', () => {
     it('Simplest json', function () {
       const path = './test/test_data/simplest.json';

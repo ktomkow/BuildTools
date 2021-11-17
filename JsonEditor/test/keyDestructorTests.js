@@ -1,7 +1,7 @@
 var should = require('should');
 var destructor = require('../src/keyDestructor');
 
-describe('KeyDestructorTests', () => {
+describe('KeyDestructor', () => {
   describe('Invalid input type', () => {
     it('Input is null', () => {
       const act = () => destructor.destruct(null);

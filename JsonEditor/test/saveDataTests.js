@@ -2,7 +2,7 @@ var should = require('should');
 var io = require('../src/fileIO');
 var serializer = require('../src/serializer');
 
-describe('FileIO SaveDataTests', () => {
+describe('FileIO SaveData', () => {
   describe('Serialize and save object', () => {
     it('Simplest json', function () {
       const path = './test/test_data/simplest.json';

@@ -1,7 +1,7 @@
 var should = require('should');
 var replacer = require('../src/valuesReplacer');
 
-describe('ValuesReplacerTests', () => {
+describe('ValuesReplacer', () => {
   describe('Replace values (immutable)', () => {
     it('Single text', function () {
       const obj = { text: 'replace me' };
